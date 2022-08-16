@@ -1,0 +1,37 @@
+import cv2 
+import numpy as np 
+# Load image image = cv2.imread('circulos.jpg',0) #C://gfg//images//blobs. jpg’, 0) 
+# Establecer nuestros parámetros de filtrado 
+# Inicializar la configuración de parámetros usando cv2.SimpleBlobDetector 
+params = cv2.SimpleBlobDetector_Params() 
+
+# Establecer parámetros de filtrado de área 
+params.filterByArea = True params.minArea = 100 
+
+# Establecer parámetros de filtrado de circularidad 
+params.filterByCircularity = True params.minCircularity = 0.9 
+
+# Establecer parámetros de filtrado de convexidad 
+params.filterByConvexity = True params.minConvexity = 0.2 
+
+# Establecer parámetros de filtrado de inercia 
+params.filterByInertia = True params.minInertiaRatio = 0.01 
+
+# Crear un detector con los parámetros 
+detector = cv2.SimpleBlobDetector_create(params) 
+
+
+# Detectar puntos clave de 
+blobs = detector.detect(image) 
+
+# Dibujar blobs en nuestra imagen como círculos rojos en 
+blanco = np.zeros((1, 1)) 
+blobs = cv2.drawKeypoints(image, keypoints, blank, (0, 0, 255) ), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS) 
+numero_de_blobs = len(clave puntos) 
+texto = "Número de manchas circulares: " + str(len(puntos clave)) 
+cv2.putText(manchas, texto, (20, 550), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 100, 255), 2) 
+
+# Mostrar blobs 
+cv2.imshow("Filtrar solo blobs circulares", blobs) 
+cv2.waitKey(0) 
+cv2.destroyAllWindows() 
